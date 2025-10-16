@@ -5,6 +5,6 @@ services:
     plan: free
     buildCommand: |
       npm install
-      npx playwright install chromium
+      npx playwright install
     startCommand: node index.js
     autoDeploy: true
