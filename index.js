@@ -28,7 +28,7 @@ app.get("/api/gold-rate", async (req, res) => {
 
     await browser.close();
 
-    res.json({ success: true, goldRate });
+    res.json({ success: true, goldRate,fetched_on :new Date() });
   } catch (err) {
     console.error("Error fetching gold rate:", err.message);
     res.status(500).json({ success: false, error: err.message });
