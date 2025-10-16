@@ -1,6 +1,7 @@
 import express from "express";
 import { chromium } from "playwright";
-const cors = require('cors');
+import cors from 'cors';
+
 
 const app = express();
 // Allow all origins (for testing)
