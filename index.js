@@ -21,10 +21,11 @@ app.get("/api/gold-rate", async (req, res) => {
 
     // Extract the text content
     const goldRate = await page.$eval("._7_GedP", el => el.innerText.trim());
+    const per_gram24k = parseInt(goldRate) / 8
 
     await browser.close();
 
-    res.json({ success: true, goldRate });
+    res.json({ success: true, goldRate,per_gram24k });
   } catch (err) {
     console.error("Error fetching gold rate:", err.message);
     res.status(500).json({ success: false, error: err.message });
