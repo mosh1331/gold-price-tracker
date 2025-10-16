@@ -1,7 +1,10 @@
 import express from "express";
 import { chromium } from "playwright";
+const cors = require('cors');
 
 const app = express();
+// Allow all origins (for testing)
+app.use(cors());
 const PORT = process.env.PORT || 3000;
 
 app.get("/api/gold-rate", async (req, res) => {
@@ -21,11 +24,10 @@ app.get("/api/gold-rate", async (req, res) => {
 
     // Extract the text content
     const goldRate = await page.$eval("._7_GedP", el => el.innerText.trim());
-    const per_gram24k = parseInt(goldRate) / 8
 
     await browser.close();
 
-    res.json({ success: true, goldRate,per_gram24k });
+    res.json({ success: true, goldRate });
   } catch (err) {
     console.error("Error fetching gold rate:", err.message);
     res.status(500).json({ success: false, error: err.message });
